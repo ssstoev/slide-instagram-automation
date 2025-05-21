@@ -13,9 +13,7 @@ type Props = {
 }
 
 // function to fetch automation metadata
-export async function generateMetaData({ params }:{
-  params: { id: string }
-}){
+export async function generateMetadata({ params }: { params: { id: string }}){
   const info = await getAutomationInfo(params.id)
 
   return {

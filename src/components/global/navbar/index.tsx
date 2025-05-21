@@ -35,8 +35,8 @@ const Navbar = ({ slug }: Props) => {
           side='left' 
           trigger={<Menu />}
           className='lg:hidden'
-          children={
-            <div className="
+          >
+          <div className="
             my-3
             flex flex-col 
             gap-y-5
@@ -79,9 +79,7 @@ const Navbar = ({ slug }: Props) => {
                   </div>
                 </SubscriptionPlan>
             </div>
-          }
-          >
-          </Sheet>
+        </Sheet>
       </span>
       <Search />
       <CreateAutomation />

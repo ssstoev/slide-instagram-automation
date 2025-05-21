@@ -22,7 +22,18 @@ const AutomationList = (props: Props) => {
   // console.log('latest variable', latestVariable)
 
   const { pathname } = usePaths()
-  
+  // we use the latestVariable to be able to instantly render changes (even before request is send to server)
+  // useMemo hook tracks if there are any changes to the latestVariable or the data itself and only re-renders if there're such changes
+  // this way we don't need to wait for the server response => optimisticUI 
+  const optimisticUiData = useMemo(() => {
+    if (latestVariable?.variables, data) {
+      const test = [latestVariable.variables, ...data.data]
+
+      return { data: test }
+    }
+    return data || { data: [] }
+  }, [latestVariable, data])
+
   // if no automations exist show 'no automations'
   if (data?.status !== 200 || data.data.length <= 0){
     return <div className='h-[70v] flex jusitfy-center items-center flex-col gap-y-3'>
@@ -30,18 +41,6 @@ const AutomationList = (props: Props) => {
       <CreateAutomation/>
     </div>
   }
-  // we use the latestVariable to be able to instantly render changes (even before request is send to server)
-  // useMemo hook tracks if there are any changes to the latestVariable or the data itself and only re-renders if there're such changes
-  // this way we don't need to wait for the server response => optimisticUI 
-  const optimisticUiData = useMemo(() => {
-    if (latestVariable?.variables) {
-      const test = [latestVariable.variables, ...data.data]
-
-      return { data: test }
-    }
-
-    return data
-  }, [latestVariable, data])
   
   // if (latestVariable?.status !== 'success' || latestVariable.variables.length <= 0){
   //   return <div className='h-[70v] flex jusitfy-center items-center flex-col gap-y-3'>

@@ -8,12 +8,10 @@ import {
     trackResponses,
 } from "@/actions/webhook/queries"
 import { sendDM } from "@/lib/fetch"
+import { openai } from "@/lib/openai"
 import { client } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
-import OpenAi from "openai"
 
-const openai = new OpenAi({ apiKey: process.env.OPEN_AI_KEY })
-console.log("OpenAI API Key:", process.env.OPEN_AI_KEY ? "Loaded" : "Not Loaded");
 //this get method is used to validate the webhook with our endpoint(only done once at the start)
 export async function GET(req: NextRequest) {
     const hub = req.nextUrl.searchParams.get("hub.challenge")

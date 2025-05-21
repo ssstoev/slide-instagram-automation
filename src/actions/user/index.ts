@@ -11,7 +11,7 @@ import { redirect } from "next/navigation"
 import { createUser, findUser, updateSubscription } from "./queries"
 import { refreshToken } from "@/lib/fetch"
 import { updateIntegration } from "../integrations/queries"
-import { stripe } from "@/app/(protected)/api/payments/route"
+import { stripe } from "@/lib/stripe"
 
 // use the currentUser function from nextJS and returns the curent user data
 // if there isn't such a user it redirects to the sign-in page

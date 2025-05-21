@@ -1,9 +1,7 @@
 // Stripe credentials and api get endpoint to get user 
+import { stripe } from '@/lib/stripe';
 import { currentUser } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import Stripe from 'stripe'
-
-export const stripe = new Stripe(process.env.STRIPE_CLIENT_SECRET as string)
 
 export async function GET(){
   const user = await currentUser()
