@@ -16,7 +16,8 @@ const Items = ({ page, slug }: Props) => {
   console.log('current slug', slug)
 
   return SIDEBAR_MENU.map((item) => (
-    <Link 
+    <Link
+      prefetch={true} 
       key={item.id} 
       href={`/dashboard/${slug}/${item.label === 'home' ? '/' : item.label}`}
       className={cn("capitalize flex gap-x-2 rounded-full p-3",

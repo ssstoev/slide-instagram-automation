@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(hub)
 }
 
+// every time a comment/DM is sent the IG API sends a POST request to our endpoint
 export async function POST(req: NextRequest) {
     //we get the request payload
     const webhook_payload = await req.json()
@@ -27,12 +28,14 @@ export async function POST(req: NextRequest) {
         //first lets verfiy if a keyword was commented/dmed
         //this way we can see if we have an automation
 
+        // check for match in comment
         if (webhook_payload.entry[0].messaging) {
             matcher = await matchKeyword(
                 webhook_payload.entry[0].messaging[0].message.text,
             )
         }
 
+        // check for match in DMs
         if (webhook_payload.entry[0].changes) {
             matcher = await matchKeyword(
                 webhook_payload.entry[0].changes[0].value.text,
@@ -57,6 +60,16 @@ export async function POST(req: NextRequest) {
                     true,
                 )
 
+                // check if automation is active
+                if (!automation?.active){
+                    console.log('automation is not active')
+                    return NextResponse.json(
+                        {
+                            message: "Automation is not active",
+                        },
+                        { status: 200 },
+                    )
+                }
                 if (automation && automation.trigger) {
                     //if there is an automation trigger used
                     //we start the automation
@@ -77,7 +90,7 @@ export async function POST(req: NextRequest) {
                         if (direct_message.status === 200) {
                             //if successfully send we return
 
-                            //we also track of the 1st time responses
+                            //we also track the 1st time responses
                             const tracked = await trackResponses(
                                 automation.id,
                                 "DM",

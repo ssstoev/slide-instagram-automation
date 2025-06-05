@@ -1,4 +1,4 @@
-import { createAutomations, deleteKeyword, saveKeyword, saveListener, savePosts, saveTrigger, updateAutomationName } from "@/actions/automations"
+import { createAutomations, deleteAutomations, deleteKeyword, saveKeyword, saveListener, savePosts, saveTrigger, updateAutomationName } from "@/actions/automations"
 import { useMutationData } from "./use-mutation-data"
 import { useEffect, useRef, useState } from "react";
 import { z } from 'zod'
@@ -6,12 +6,26 @@ import useZodForm from "./use-zod-form";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { TRIGGER } from "@/redux/slices/automations";
+import { useQueryClient } from '@tanstack/react-query'
+import { revalidatePath } from "next/cache";
+import { useParams } from 'next/navigation';
 
 // useMutationData hook lets us use optimistic UI
-export const useCreateAutomation = (id?: string) => {
+export const useCreateAutomation = (mutationId?: string) => {
   const { isPending, mutate } = useMutationData(
     ['create-automation'], 
-    () => createAutomations(id),
+    () => createAutomations(mutationId),
+    'user-automations'
+  )
+
+  return { isPending, mutate }
+};
+
+//hook to delete automations
+export const useDeleteAutomation = (id?: string) => {
+  const { isPending, mutate } = useMutationData(
+    ['delete-automation'],
+    () => deleteAutomations(id),
     'user-automations'
   )
 
@@ -20,16 +34,29 @@ export const useCreateAutomation = (id?: string) => {
 
 // hook to handle the edit of the automation name in the breadcrumb
 export const useEditAutomation = (automationId: string) => {
+  const queryClient = useQueryClient()
   const [edit, setEdit] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const enableEdit = () => setEdit(true)
   const disableEdit = () => setEdit(false)
-
+  // const { slug } = useParams(); // slug will be a string or array depending on your route
+  // console.log('SLUG IS: ', slug)
   const { isPending, mutate } = useMutationData(
     ['update-automation'],  //name of the mutation we're going to create
     (data: { name: string }) => updateAutomationName(automationId, { name: data.name }), //mutation function 
     'automation-info', //name of query which we will invalidate
-    disableEdit //this is the onSuccess
+    async () => {
+      disableEdit(); //this is the onSuccess
+      await queryClient.invalidateQueries({ queryKey: ['user-automations'] });
+      // console.log('successfully invalidated user-automations query!')
+      await queryClient.invalidateQueries({ queryKey: ['automation-info'] }); // optional: also refresh automation-info
+    
+      // 🚀 Refetch automations list *now*, not later
+      console.log('refetching user-automations query....')
+      await queryClient.refetchQueries({ queryKey: ['user-automations'] })
+      console.log('Refetched successfully user-automations query....')
+      // revalidatePath(`/dashboard/${slug}/automations`)
+      }
   )
 
   // the use effect executes mutation on the data if we mouse click outside the input box

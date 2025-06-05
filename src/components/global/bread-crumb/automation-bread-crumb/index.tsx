@@ -54,14 +54,14 @@ const AutomationBreadCrumb = ({ id }: Props) => {
             )}
         </span>
       </div>
-      <div className='flex gap-x-5'>
+      {/* <div className='flex gap-x-5'>
         <p className='text-text-secondary/60 text-sm truncate'>
           All updates are automatically saved
         </p>
         <div className='flex gap-x-5'>
           <p className='text-text-secondary text-sm'>Changes saved</p>
         </div>
-      </div>
+      </div> */}
       <ActivateAutomationButton id={id}/>
     </div>
   )

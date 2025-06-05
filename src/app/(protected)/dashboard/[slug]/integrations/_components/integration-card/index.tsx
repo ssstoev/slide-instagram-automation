@@ -12,8 +12,9 @@ type Props = {
   strategy: 'INSTAGRAM' | 'CRM'
 }
 
+// WIP: Make it possible to disconnect Instagram profile and connect a new one
 const IntegrationCard = ({ title, description, icon, strategy }: Props) => {
-  const onInstaOAuth = () => onOAuthInstagram(strategy)
+  const onInstaOAuth = () => onOAuthInstagram(strategy);
   const { data } = useQuery({
     queryKey: ['user-profile'],
     queryFn: onUserInfo,

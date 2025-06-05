@@ -1,15 +1,19 @@
+'use client'
 import AutomationList from '@/components/global/automation-list'
 import CreateAutomation from '@/components/global/create-automation'
 import { Check } from 'lucide-react'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 
 type Props = {}
 
 const Page = (props: Props) => {
+  const pathname = usePathname()
+
   return (
     <div className='grid grid-cols-1 lg:grid-cols-6 gap-5'>
       <div className='lg:col-span-4'>
-        <AutomationList />
+        <AutomationList key={pathname}/>
       </div>
       <div className='lg:col-span-2'>
         <div className='flex flex-col rounded-xl bg-background-80 gap-y-6

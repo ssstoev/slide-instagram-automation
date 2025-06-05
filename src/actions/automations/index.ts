@@ -3,7 +3,7 @@
 import { onCurrentUser } from "../user"
 import { findUser } from "../user/queries"
 import { addKeyword, addListener, addPost, addTrigger, 
-        createAutomation, deleteKeywordQuery, findAutomation, 
+        createAutomation, deleteAutomation, deleteKeywordQuery, findAutomation, 
         getAutomations, updateAutomation } from "./queries"
 
 export const createAutomations = async (id?: string) => {
@@ -24,6 +24,20 @@ export const createAutomations = async (id?: string) => {
   }
 }
 
+export const deleteAutomations = async(id?: string) => {
+  console.log('deleting the automation...')
+  const user = await onCurrentUser();
+
+  try {
+    const deleted = await deleteAutomation(user.id, id)
+
+    if (deleted) return { status: 200, data: 'Automation deleted'}
+    return { status: 404, data: 'Oops! Something went wrong' }
+
+  } catch (error) {
+    return { status: 500, data: 'Internal server error' }
+  }
+};
 
 export const getAllAutomations = async () => {
   const user = await onCurrentUser()

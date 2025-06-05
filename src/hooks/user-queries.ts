@@ -6,13 +6,16 @@ export const useQueryAutomations = () => {
 
   return useQuery(
     {
-      queryKey: ["user-automations"],  // Unique key for caching
+      queryKey: ['user-automations'],  // Unique key for caching
       queryFn: getAllAutomations,
       initialData: {
         status: 200, 
         data: []
-      } 
-    }
+      },
+      // refetchOnWindowFocus: true,
+      // refetchOnMount: 'always',
+      staleTime: 0
+    },
   )
 }
 
