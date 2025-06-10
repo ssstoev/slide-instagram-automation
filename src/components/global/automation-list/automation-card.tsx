@@ -38,7 +38,7 @@ type Props = {
 const AutomationCard = ( { automation, pathname }: Props) => {
 
   const { mutate, isPending } = useDeleteAutomation(automation.id)
-  // const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleClick = () => {
     console.log('delete button clicked')
@@ -47,14 +47,18 @@ const AutomationCard = ( { automation, pathname }: Props) => {
     mutate(automation.id, {
       onSuccess: () => {
         console.log(`Automation with ID ${automation.id} deleted successfully.`);
+        setShowConfirm(false)
       },
       onError: (error) => {
+        setShowConfirm(false)
         console.error(`Failed to delete automation with ID ${automation.id}:`, error);
       },
     });
+    setShowConfirm(false);
   };
 
   return (
+    <>
     <Link
         href={`${pathname}/${automation.id}`}
         key={automation.id}
@@ -118,7 +122,8 @@ const AutomationCard = ( { automation, pathname }: Props) => {
               onClick={e => {
                 e.preventDefault(); //stops the link from opening the automation page
                 e.stopPropagation(); // prevents the link from being clicked
-                handleClick();
+                // handleClick();
+                setShowConfirm(true)
               }}>
               <TrashBinIcon/>
             </span>
@@ -138,6 +143,31 @@ const AutomationCard = ( { automation, pathname }: Props) => {
           )}
         </div>
       </Link>
+
+      {showConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-[#1D1D1D] rounded-lg p-6 shadow-lg flex flex-col items-center">
+            <p className="mb-4 text-lg font-semibold text-white">Are you sure you want to delete?</p>
+            <div className="flex gap-4">
+              <Button
+                className="lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
+                          rounded-full from-[#3352CC] font-medium to-[#1C2D70]"
+                onClick={handleClick}
+              >
+                Yes
+              </Button>
+              <Button
+                className="lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
+                          rounded-full from-[#818283] font-medium to-[#737478]"
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
