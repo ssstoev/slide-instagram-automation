@@ -54,13 +54,13 @@ const AutomationCard = ( { automation, pathname }: Props) => {
                     key={keyword.id}
                     className={cn(
                       'rounded-full px-4 py-1 capitalize',
-                      (0 + 1) % 1 == 0 &&
+                      (key + 1) % 1 == 0 &&
                         'bg-keyword-green/15 border-2 border-keyword-green',
-                      (1 + 1) % 2 == 0 &&
+                      (key + 1) % 2 == 0 &&
                         'bg-keyword-purple/15 border-2 border-keyword-purple',
-                      (2 + 1) % 3 == 0 &&
+                      (key + 1) % 3 == 0 &&
                         'bg-keyword-yellow/15 border-2 border-keyword-yellow',
-                      (3 + 1) % 4 == 0 &&
+                      (key + 1) % 4 == 0 &&
                         'bg-keyword-red/15 border-2 border-keyword-red'
                     )}
                   >
