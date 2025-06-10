@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { cn, getMonth } from '@/lib/utils'
 import GradientButton from '../gradient-button'
 import { Button } from '@/components/ui/button'
+import { TrashBinIcon } from '@/icons/trash-bin'
+import { useDeleteAutomation } from "@/hooks/use-automations";
+import { useState } from "react";
 
 type Keyword = {
   automationId: string
@@ -33,6 +36,24 @@ type Props = {
 }
 
 const AutomationCard = ( { automation, pathname }: Props) => {
+
+  const { mutate, isPending } = useDeleteAutomation(automation.id)
+  // const [showConfirm, setShowConfirm] = useState(false)
+
+  const handleClick = () => {
+    console.log('delete button clicked')
+    console.log('turned red')
+    // Trigger the delete mutation
+    mutate(automation.id, {
+      onSuccess: () => {
+        console.log(`Automation with ID ${automation.id} deleted successfully.`);
+      },
+      onError: (error) => {
+        console.error(`Failed to delete automation with ID ${automation.id}:`, error);
+      },
+    });
+  };
+
   return (
     <Link
         href={`${pathname}/${automation.id}`}
@@ -76,13 +97,32 @@ const AutomationCard = ( { automation, pathname }: Props) => {
           )}
         </div>
         <div className="flex flex-col justify-between">
-          <p className="capitalize text-sm font-light text-[#9B9CA0]">
+          {/* <p className="capitalize text-sm font-light text-[#9B9CA0]">
             {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
             {automation.createdAt.getUTCDate() === 1
               ? `${automation.createdAt.getUTCDate()}st`
               : `${automation.createdAt.getUTCDate()}th`}{' '}
             {automation.createdAt.getUTCFullYear()}
-          </p>
+            <TrashBinIcon />
+          </p> */}
+          <div className="flex items-center justify-between w-full">
+            <span className="capitalize text-sm font-light text-[#9B9CA0] mr-3">
+              {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
+              {automation.createdAt.getUTCDate() === 1
+                ? `${automation.createdAt.getUTCDate()}st`
+                : `${automation.createdAt.getUTCDate()}th`}{' '}
+              {automation.createdAt.getUTCFullYear()}
+            </span>
+            <span
+              className="hover:text-red-500 transition-colors"
+              onClick={e => {
+                e.preventDefault(); //stops the link from opening the automation page
+                e.stopPropagation(); // prevents the link from being clicked
+                handleClick();
+              }}>
+              <TrashBinIcon/>
+            </span>
+        </div>
 
           {automation.listener?.listener === 'SMARTAI' ? (
             <GradientButton
