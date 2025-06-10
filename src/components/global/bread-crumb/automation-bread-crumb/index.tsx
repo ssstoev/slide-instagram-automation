@@ -32,11 +32,11 @@ const AutomationBreadCrumb = ({ id }: Props) => {
             <Input 
               ref={inputRef}
               placeholder={isPending ? latestVariable.variables : 'Add a new name'}
-              className='bg-transparent h-auto outline-none text-base border-none p-0' 
+              className='w-80 bg-transparent h-8 outline-none text-base border-none p-0 placeholder:text-base' 
               />
           ) : (
             // <p className='cursor-pointer hover:opacity-75 duration-100 transition'>{data?.data?.name}</p>
-            <p className='text-[#9b9ca0] truncate'>
+            <p className='text-[#9b9c9e] truncate font-bold text-2xl'>
               {/* if we have an update put the new name using optimistic UI else put the old name */}
               {latestVariable?.variables 
               ? latestVariable?.variables.name

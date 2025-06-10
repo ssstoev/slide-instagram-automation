@@ -8,7 +8,7 @@ import { addKeyword, addListener, addPost, addTrigger,
 
 export const createAutomations = async (id?: string) => {
   const user = await onCurrentUser()
-  console.log('current user is: ', user)
+  // console.log('current user is: ', user)
 
   try {
     // console.log(`creating automation with id ${id}...`)

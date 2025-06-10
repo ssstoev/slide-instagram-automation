@@ -59,7 +59,7 @@ function Keywords({ id }: Props) {
             width: Math.min(Math.max(keyword.length || 10, 2), 50) + 'ch'
           }}
           value={keyword}
-          className='p-0 bg-transparent ring-0 border-none outline-none'
+          className='p-0 bg-transparent ring-0 border-none outline-none placeholder:text-sm'
           onChange={onValueChange}
           onKeyUp={onKeyPress}
           />
