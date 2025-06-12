@@ -45,8 +45,8 @@ export const useMutationDataState = (mutationKey: MutationKey) => {
   })
   
   // console.log(`mutation data state of key ${mutationKey}:`, data)
-  // const latestVariable = data[data.length - 1]
+  const latestVariable = data[data.length - 1]
     // const latestVariable = data
 
-  return { data }
+  return { latestVariable, data }
 }

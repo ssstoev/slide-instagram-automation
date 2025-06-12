@@ -46,10 +46,20 @@ const AutomationList = () => {
       return { data: test };
     }
 
-    // else if (deleteMutationData && Array.isArray(deleteMutationData) 
-    // ) {
+    // else if (deleteMutationData && Array.isArray(deleteMutationData)) {
+    //   // Collect all IDs to delete
+    //   const idsToDelete = deleteMutationData
+    //     .map(m => m.variables)
+    //     .filter(Boolean);
 
+    //   // Filter out automations whose id is in idsToDelete
+    //   const leftAutomations = data.data.filter(
+    //     automation => !idsToDelete.includes(automation.id)
+    //   );
+
+    //   return { data: leftAutomations };
     // }
+
     return data || { data: [] };
   }, [createMutationData, data]);
 
