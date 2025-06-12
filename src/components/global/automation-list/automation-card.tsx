@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { TrashBinIcon } from '@/icons/trash-bin'
 import { useDeleteAutomation } from "@/hooks/use-automations";
 import { useState } from "react";
+import { useQueryClient } from '@tanstack/react-query'
 
 type Keyword = {
   automationId: string
@@ -36,18 +37,19 @@ type Props = {
 }
 
 const AutomationCard = ( { automation, pathname }: Props) => {
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useDeleteAutomation(automation.id)
   const [showConfirm, setShowConfirm] = useState(false)
 
-  const handleClick = () => {
+  const handleDelete = () => {
     console.log('delete button clicked')
-    console.log('turned red')
     // Trigger the delete mutation
     mutate(automation.id, {
       onSuccess: () => {
         console.log(`Automation with ID ${automation.id} deleted successfully.`);
-        setShowConfirm(false)
+        queryClient.invalidateQueries({ queryKey: ['user-automations'] });
+        setShowConfirm(false);
       },
       onError: (error) => {
         setShowConfirm(false)
@@ -147,17 +149,17 @@ const AutomationCard = ( { automation, pathname }: Props) => {
       {showConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="bg-[#1D1D1D] rounded-lg p-6 shadow-lg flex flex-col items-center">
-            <p className="mb-4 text-lg font-semibold text-white">Are you sure you want to delete?</p>
+            <p className="mb-4 text-lg font-semibold text-white">Are you sure you want to delete the automation?</p>
             <div className="flex gap-4">
               <Button
-                className="lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
+                className="w-32 lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
                           rounded-full from-[#3352CC] font-medium to-[#1C2D70]"
-                onClick={handleClick}
+                onClick={handleDelete}
               >
                 Yes
               </Button>
               <Button
-                className="lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
+                className="w-32 lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
                           rounded-full from-[#818283] font-medium to-[#737478]"
                 onClick={() => setShowConfirm(false)}
               >

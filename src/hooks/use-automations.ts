@@ -20,10 +20,13 @@ import { useParams } from 'next/navigation';
 
 // useMutationData hook lets us use optimistic UI
 export const useCreateAutomation = (mutationId?: string) => {
+  // const queryClient = useQueryClient()
+
   const { isPending, mutate } = useMutationData(
     ['create-automation'], 
     () => createAutomations(mutationId),
-    'user-automations'
+    'user-automations',
+    // () => queryClient.invalidateQueries({ queryKey: ['user-automations'] })
   )
 
   return { isPending, mutate }

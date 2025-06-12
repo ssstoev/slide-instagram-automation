@@ -15,7 +15,7 @@ export const useMutationData = (
     mutationFn,
     onSuccess: (data) => {            // only if user passes onSuccess as parameter it is executed
       if (onSuccess) onSuccess()
-        console.log('onSuccess')
+        // console.log('onSuccess')
       return toast(data.status === 200 ? "Success" : "Error", {
     description: data.data
   })
@@ -45,6 +45,8 @@ export const useMutationDataState = (mutationKey: MutationKey) => {
   })
   
   // console.log(`mutation data state of key ${mutationKey}:`, data)
-  const latestVariable = data[data.length - 1]
-  return { latestVariable }
+  // const latestVariable = data[data.length - 1]
+    // const latestVariable = data
+
+  return { data }
 }
