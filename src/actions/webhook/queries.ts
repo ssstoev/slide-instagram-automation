@@ -112,7 +112,7 @@ export const getChatHistory = async (sender: string, reciever: string) => {
   const chatSession: {
     role: 'assistant' | 'user'
     content: string
-  }[] = history.map((chat) => {
+  }[] = history.map((chat: { reciever: string | null; message: string | null }) => {
     return {
       role: chat.reciever ? 'assistant' : 'user',
       content: chat.message!,
