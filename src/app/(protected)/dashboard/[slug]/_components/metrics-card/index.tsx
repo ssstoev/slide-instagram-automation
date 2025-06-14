@@ -9,12 +9,12 @@ const MetricsCard = (props: Props) => {
 
   // aggregate the number of comments and messages
   const comments = data?.data.reduce(
-    (current: number, next) => {
+    (current: number, next: any) => {
       return current + next.listener?.commentCount!
     }, 0)
 
   const dms = data?.data.reduce(
-      (current: number, next) => {
+      (current: number, next: any) => {
         return current + next.listener?.dmCount!
       }, 0)
 
