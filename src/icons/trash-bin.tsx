@@ -1,30 +1,7 @@
-import { useDeleteAutomation } from "@/hooks/use-automations";
-import { useState } from "react";
-
 export const TrashBinIcon = ({ 
   className = '',
   ...props
 }: React.SVGProps<SVGSVGElement>) => {
-
-  // const [isRed, setIsRed] = useState(false);
-  // const { mutate, isPending } = useDeleteAutomation(mutationId)
-
-  // const handleClick = () => {
-  //   console.log('delete button clicked')
-  //   setIsRed((prev) => !prev)
-  //   console.log('turned red')
-  //   // Trigger the delete mutation
-  //   mutate(mutationId, {
-  //     onSuccess: () => {
-  //       console.log(`Automation with ID ${mutationId} deleted successfully.`);
-  //     },
-  //     onError: (error) => {
-  //       console.error(`Failed to delete automation with ID ${mutationId}:`, error);
-  //     },
-  //   });
-  //   setIsRed((prev) => !prev)
-  //   // setTimeout(() => setIsRed((prev) => !prev), 1000)
-  // };
 
   return (
     <svg 

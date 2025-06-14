@@ -15,7 +15,7 @@ const AutomationList = () => {
   const { data: createMutationData } = useMutationDataState(['create-automation'])
   const { data: deleteMutationData } = useMutationDataState(['delete-automation'])
 
-  console.log('DELETE MUTATION DATA: \n', deleteMutationData)
+  console.log('CREATE MUTATION DATA: \n', createMutationData)
   // const { latestVariable: deletedLatestVariable } = useMutationDataState(['delete-automation'])
   // console.log('DELETED LATEST VARIABE: ', deletedLatestVariable)
   const { pathname } = usePaths()
@@ -41,46 +41,42 @@ const AutomationList = () => {
           (newAuto) => !data.data.some(existing => existing.id === newAuto.id)
         );
 
-      // Prepend all new automations to the server data
-      const test = [...newAutomations, ...data.data];
-      return { data: test };
+      // Collect all IDs to delete
+      const idsToDelete = deleteMutationData
+        .map(m => m.variables)
+        .filter(Boolean);
+      // Combine: prepend new automations, then add server automations not in delete list or newAutomations
+      const combined = [
+        ...newAutomations,
+        ...data.data.filter(
+          automation =>
+            !idsToDelete.includes(automation.id) &&
+            !newAutomations.some(newAuto => newAuto.id === automation.id)
+        ),
+      ];
+      
+      return { data: combined };
     }
 
-    // else if (deleteMutationData && Array.isArray(deleteMutationData)) {
-    //   // Collect all IDs to delete
-    //   const idsToDelete = deleteMutationData
-    //     .map(m => m.variables)
-    //     .filter(Boolean);
+    // else if (deleteMutationData && Array.isArray(createMutationData)) {
+    //   console.log('deletion mutation triggered...')
+      // // Collect all IDs to delete
+      // const idsToDelete = deleteMutationData
+      //   .map(m => m.variables)
+      //   .filter(Boolean);
+      // console.log('IDs TO DELETE', idsToDelete)
+      // // Filter out automations whose id is in idsToDelete
+      // const leftAutomations = data.data.filter(
+      //   automation => !idsToDelete.includes(automation.id)
+      // );
+      // const test = [...leftAutomations];
 
-    //   // Filter out automations whose id is in idsToDelete
-    //   const leftAutomations = data.data.filter(
-    //     automation => !idsToDelete.includes(automation.id)
-    //   );
-
-    //   return { data: leftAutomations };
+      // return { data: test };
     // }
-
     return data || { data: [] };
-  }, [createMutationData, data]);
+  }, [createMutationData, deleteMutationData, data]);
 
   console.log('AUTOMATIONS in OPTIMISTIC UI: \n', optimisticUiData?.data)
-
-  //  const optimisticUiData = useMemo(() => {
-  //   if (!data) return { data: [] }
-
-  //   // If there’s a newly created automation, check if it's already in the list
-  //   if (latestVariable?.variables) {
-  //     const alreadyExists = data.data.find(
-  //       (a) => a.id === latestVariable.variables.id
-  //     )
-
-  //     if (!alreadyExists) {
-  //       return { data: [latestVariable.variables, ...data.data] }
-  //     }
-  //   }
-
-  //   return data
-  // }, [latestVariable, data])
   
   if (data?.status !== 200 || data.data.length <= 0 && optimisticUiData.data.length <= 0) {
     return (
