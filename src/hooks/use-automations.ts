@@ -72,9 +72,9 @@ export const useEditAutomation = (automationId: string) => {
 
   // the use effect executes mutation on the data if we mouse click outside the input box
   useEffect(() => {
-    function handleClickOutside(this: Document, event: MouseEvent){
+    function handleClickOutside(this: Document, event: MouseEvent | TouchEvent){
       // Check if the input element is mounted and accessible in the DOM 
-      // and check did you click outside of the input field
+      // and check did you click/touch outside of the input field
       // inputRef is the input field and we check if we clicked outside of it
       if (inputRef.current && !inputRef.current.contains(event.target as Node | null)){
         if (inputRef.current.value !== ""){
@@ -100,6 +100,7 @@ export const useEditAutomation = (automationId: string) => {
     };
 
     return () => {
+      document.addEventListener('touchstart', handleClickOutside)
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEnterKey)
 
