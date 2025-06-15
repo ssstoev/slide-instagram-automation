@@ -23,7 +23,7 @@ export default function Home() {
               </h1>
               <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#4361ee] rounded-full animate-pulse"></div>
             </div>
-            <span className="ml-3 text-xs font-medium text-[#8a9af7] bg-[#4361ee]/20 px-2 py-1 rounded-full">
+            <span className="hidden ml-3 text-xs font-medium text-[#8a9af7] bg-[#4361ee]/20 px-2 py-1 rounded-full">
               BOUTIQUE
             </span>
           </div>

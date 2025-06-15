@@ -100,8 +100,8 @@ export const useEditAutomation = (automationId: string) => {
     };
 
     return () => {
-      document.addEventListener('touchstart', handleClickOutside)
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
       document.addEventListener('keydown', handleEnterKey)
 
     }

@@ -11,7 +11,7 @@ const Page = (props: Props) => {
   const pathname = usePathname()
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-6 gap-5'>
+    <div className='grid grid-cols-1 lg:grid-cols-6 gap-5 overflow-y-auto'>
       <div className='lg:col-span-4'>
         <AutomationList key={pathname}/>
       </div>

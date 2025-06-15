@@ -24,7 +24,7 @@ const AutomationBreadCrumb = ({ id }: Props) => {
 
   return (
     <div className='rounded-full w-full p-5 bg-[#18181B1a] flex justify-between items-center'>
-      <div className='flex items-center gap-x-3'>
+      <div className='flex items-center gap-x-3 min-w-0 flex-1'>
         <p className='text-[#9b9ca0] truncate'>Automations</p>
         <ChevronRight className = 'flex-shrink-0' color='#9b9ca0' />
         <span className='flex gap-x-3 items-center'>
@@ -62,7 +62,9 @@ const AutomationBreadCrumb = ({ id }: Props) => {
           <p className='text-text-secondary text-sm'>Changes saved</p>
         </div>
       </div> */}
-      <ActivateAutomationButton id={id}/>
+      <div className='flex-shrink-0'> 
+        <ActivateAutomationButton id={id}/>
+      </div>
     </div>
   )
 }

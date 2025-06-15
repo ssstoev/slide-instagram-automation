@@ -80,7 +80,7 @@ const AutomationCard = ( { automation, pathname }: Props) => {
                   <div
                     key={keyword.id}
                     className={cn(
-                      'rounded-full px-4 py-1 capitalize',
+                      'rounded-full px-4 py-1 capitalize mb-2',
                       (key + 1) % 1 == 0 &&
                         'bg-keyword-green/15 border-2 border-keyword-green',
                       (key + 1) % 2 == 0 &&

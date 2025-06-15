@@ -33,7 +33,11 @@ const ClerkAuthState = (props: Props) => {
         </SignInButton>
       </SignedOut>
       <SignedIn>
-        <UserButton>
+        <UserButton
+          appearance={{
+          elements: { userButtonPopoverCard: { pointerEvents: "initial" } },
+        }}
+        >
           <UserButton.UserProfileLink 
             label='Dashboard'
             url={`/dashboard`}

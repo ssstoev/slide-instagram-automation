@@ -30,7 +30,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(query)}>
-      <div className='flex flex-col items-center gap-y-20'>
+      <div className='flex flex-col items-center gap-y-20 min-h-screen overflow-auto'>
         <AutomationBreadCrumb id={params.id}/>
         <div className='w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl
           flex flex-col bg-[#1d1d1d] gap-y-3'>

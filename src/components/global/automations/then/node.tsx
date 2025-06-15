@@ -17,7 +17,7 @@ const ThenNode = ({ id }: Props) => {
   return !data?.data?.listener 
     ? <></> 
     : <div 
-        className='w-full lg:w-10/12 relative xl:w-6/12 p-5 rounded-xl flex flex-col bg-[#1d1d1d] gap-y-3'>
+        className='w-full lg:w-10/12 relative xl:w-6/12 p-5 rounded-xl flex flex-col bg-[#1d1d1d] gap-y-3 min-h-screen'>
           <div className='absolute h-20 left-1/2 bottom-full flex flex-col items-center z-50'>
             <span className='h-[9px] w-[9px] bg-connector/10 rounded-full' />
             <Separator 
