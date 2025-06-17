@@ -30,6 +30,8 @@ export const onBoardUser = async () => {
     const found = await findUser(user.id)
     if (found) {
 
+      console.log('User already exists')
+
       // we need to check for refresh tokens if the user exists
       if (found.integrations.length > 0) {       //check if we have integrations for the user
         const today = new Date()
@@ -67,6 +69,8 @@ export const onBoardUser = async () => {
         }
       }
     }
+    
+    console.log('User does not exists thus, we create a new one...')
 
     // in case we don't find an existing user after logging in we will create one
     const created = await createUser(
@@ -75,6 +79,9 @@ export const onBoardUser = async () => {
       user.lastName!, 
       user.emailAddresses[0].emailAddress
     )
+    
+    console.log('User created!')
+
     return { status: 201, data: created}
   }  
   
