@@ -395,11 +395,29 @@ export default function Home() {
                   Join an exclusive community of creators who have elevated their Instagram engagement through artisanal
                   automation.
                 </p>
-                <Button className="bg-gradient-to-r from-[#4361ee] to-[#8a9af7] hover:from-[#3a56d4] hover:to-[#7b8bf5] text-white rounded-full px-12 py-6 text-xl font-medium shadow-2xl shadow-[#4361ee]/40 hover:shadow-3xl hover:shadow-[#4361ee]/60 transition-all duration-500 hover:scale-105">
-                  <BotIcon className="mr-3 h-6 w-6" />
-                  Begin Your Transformation
+                {/* <Button
+                  className="
+                    bg-gradient-to-r from-[#4361ee] to-[#8a9af7]
+                    hover:from-[#3a56d4] hover:to-[#7b8bf5]
+                    text-white rounded-full
+                    w-full max-w-xs mx-auto
+                    py-6 text-xl font-medium
+                    shadow-2xl shadow-[#4361ee]/40 hover:shadow-3xl hover:shadow-[#4361ee]/60
+                    transition-all duration-500 hover:scale-105
+                    text-center whitespace-normal
+                  "
+                >
+                  <BotIcon className="mr-3 h-6 w-6 text-center" />
+                  <span className="my-2 block">
+                    Begin Your Transformation
+                  </span>
                   <ArrowRightIcon className="ml-3 h-6 w-6" />
-                </Button>
+                </Button> */}
+                {/* <div className="p-10 pt-0"> */}
+                  <Button className="w-full bg-gradient-to-r from-[#4361ee] to-[#8a9af7] hover:from-[#3a56d4] hover:to-[#7b8bf5] text-white rounded-2xl py-6 text-lg font-medium shadow-2xl shadow-[#4361ee]/30 hover:shadow-3xl hover:shadow-[#4361ee]/50 transition-all duration-500 hover:scale-105">
+                    Begin Your Transformation
+                  </Button>
+                {/* </div> */}
               </div>
             </div>
           </div>
