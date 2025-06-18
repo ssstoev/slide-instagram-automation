@@ -10,7 +10,7 @@ type Props = {
   landing?: boolean       // whether they're landing from the landing page or not
 }
 
-const PaymentCard = ({label, current, landing }: Props) => {
+const PaymentCard = ({ label, current, landing }: Props) => {
   return (
     <div className={cn(
       label !== current ? 'bg-in-active'
@@ -62,7 +62,7 @@ const PaymentCard = ({label, current, landing }: Props) => {
         {PLANS[label === 'PRO' ? 1 : 0].features.map((item) => (
           <p key={item}
             className='mt-2 text-muted-foreground flex gap-4'>
-              <CircleCheck className='text-indigo-500' />
+              <CircleCheck className='text-indigo-500 w-7 h-7 flex-shrink-0' />
             {item}
           </p>
         ))}

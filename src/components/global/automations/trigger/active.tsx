@@ -34,7 +34,7 @@ const ActiveTrigger = ({ type, keywords }: Props) => {
         {keywords.map((word) => (
           <div key={word.id}
             className='bg-gradient-to-br from-[#3352cc] to-[#1c2d70] flex items-center
-            gap-x-2 capitalize text-white font-light py-1 px-4 rounded-full mx-1'>
+            gap-x-2 capitalize text-white font-light py-1 px-4 rounded-full mx-1 my-1'>
               <p>{word.word}</p>
             </div>
         ))}

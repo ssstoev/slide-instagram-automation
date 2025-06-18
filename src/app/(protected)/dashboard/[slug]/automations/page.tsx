@@ -24,6 +24,7 @@ const Page = (props: Props) => {
                 Your live automations will show here.
               </p>
             </div>
+            {/* WIP: Display the live/active automations below (Title and date) */}
             <div className='flex flex-col gap-y-3'>
               {[1, 2, 3].map((i) => (
                 <div key={i} className='flex items-start justify-between'>

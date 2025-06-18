@@ -20,15 +20,6 @@ const AutomationList = () => {
   // console.log('DELETED LATEST VARIABE: ', deletedLatestVariable)
   const { pathname } = usePaths()
 
-  // const optimisticUiData = useMemo(() => {
-  //   if ((createdLatestVariable && createdLatestVariable?.variables &&  data)) {
-  //     console.log('ADDED A NEW AUTOMATION')
-
-  //     const test = [createdLatestVariable.variables, ...data.data]
-  //     return { data: test }
-  //   }
-  //   return data || { data: [] }
-  // }, [createdLatestVariable, data])
   const optimisticUiData = useMemo(() => {
     if (createMutationData && Array.isArray(createMutationData) && data) {
       // Get all new automations from mutationData
@@ -58,21 +49,6 @@ const AutomationList = () => {
       return { data: combined };
     }
 
-    // else if (deleteMutationData && Array.isArray(createMutationData)) {
-    //   console.log('deletion mutation triggered...')
-      // // Collect all IDs to delete
-      // const idsToDelete = deleteMutationData
-      //   .map(m => m.variables)
-      //   .filter(Boolean);
-      // console.log('IDs TO DELETE', idsToDelete)
-      // // Filter out automations whose id is in idsToDelete
-      // const leftAutomations = data.data.filter(
-      //   automation => !idsToDelete.includes(automation.id)
-      // );
-      // const test = [...leftAutomations];
-
-      // return { data: test };
-    // }
     return data || { data: [] };
   }, [createMutationData, deleteMutationData, data]);
 
