@@ -28,6 +28,7 @@ export const useSubscription = () => {
   // helper function to call our payment endpoint
   const onSubscribe = async () => {
     setIsProcessing(true)
+    console.log('Navigating to billing page...')
     const response = await axios.get('/api/payments')
     if (response.data.status === 200) {
       return (window.location.href = `${response.data.session_url}`)
