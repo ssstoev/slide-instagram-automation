@@ -8,6 +8,7 @@ import axios from "axios";
 
 export const onOAuthInstagram = (strategy: 'INSTAGRAM' | 'CRM') => {
   if (strategy==='INSTAGRAM') {
+    console.log('INSTAGRAM_EMBEDDED_OAUTH_URL: ', process.env.INSTAGRAM_EMBEDDED_OAUTH_URL)
     return redirect(process.env.INSTAGRAM_EMBEDDED_OAUTH_URL as string)
   }
 };
@@ -16,11 +17,13 @@ export const onIntegrate = async (code: string) => {
   const user = await onCurrentUser()
 
   try {
+    // console.log('fetching integration...')
     const integration = await getIntegration(user.id)
+    // console.log('Integration fetched: ', integration)
 
     if (integration && integration.integrations.length === 0) {
       const token = await generateTokens(code)
-      // console.log('onIntegrate token: ', token)
+      console.log('onIntegrate token: ', token)
 
       if (token) {
         const insta_id = await axios.get(

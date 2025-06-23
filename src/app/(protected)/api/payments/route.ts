@@ -17,7 +17,7 @@ export async function GET(){
         quantity: 1
       }
     ],
-    success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,  //IN PROD THIS MUST BE CHANGED
+    success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,  //WIP: IN PROD THIS MUST BE CHANGED
     cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/payment?cancel=true`,
   })
 

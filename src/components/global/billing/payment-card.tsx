@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { PLANS } from '@/constants/pages'
 import { useSubscription } from '@/hooks/use-subscription'
 import {cn} from '@/lib/utils'
-import { CircleCheck, Loader2 } from 'lucide-react'
+import { CircleCheck, CreditCardIcon, Loader2 } from 'lucide-react'
 import React from 'react'
 
 type Props = {
@@ -15,8 +15,6 @@ type Props = {
 const PaymentCard = ({ label, current, landing }: Props) => {
 
   const { onSubscribe, isProcessing } = useSubscription();
-  console.log('label is ', label);
-  console.log('current is ', current)
 
   return (
     <div className={cn(
@@ -96,7 +94,8 @@ const PaymentCard = ({ label, current, landing }: Props) => {
                 ? 'Active'
                 : current === 'PRO'
                 ? 'Downgrade'
-                : 'Upgrade'}              
+                : 'Upgrade'}
+              {isProcessing ? <Loader2 className='animate-spin' /> : <></>}              
           </Button>
         )}
       </div>
