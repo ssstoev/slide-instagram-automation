@@ -6,4 +6,6 @@ Slide is an Instagram message automation tool which allows a user to connect his
 
 ![image](https://github.com/user-attachments/assets/9f69692a-1452-4d69-abdb-423706e50a6d)
 
+![image](https://github.com/user-attachments/assets/3db94c01-533b-4b78-a8de-df6ce10711fa)
+
 ![image](https://github.com/user-attachments/assets/c330cef8-d0bf-47ec-bd42-37fa12df8a6c)
