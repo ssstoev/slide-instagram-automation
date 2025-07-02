@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { InstagramIcon, MessageSquareIcon, BotIcon, ArrowRightIcon, CheckIcon, SparklesIcon } from "lucide-react"
 import Link from "next/link"
+import { LogoSmall } from '@/svgs/logo-small'
 
 export default function Home() {
   return (
@@ -19,13 +20,13 @@ export default function Home() {
           <div className="flex items-center">
             <div className="relative">
               <h1 className="text-3xl font-bold bg-gradient-to-r from-[#8a9af7] to-[#4361ee] bg-clip-text text-transparent">
-                SLide
+                <LogoSmall />
               </h1>
               <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#4361ee] rounded-full animate-pulse"></div>
             </div>
-            <span className="hidden ml-3 text-xs font-medium text-[#8a9af7] bg-[#4361ee]/20 px-2 py-1 rounded-full">
+            {/* <span className="hidden ml-3 text-xs font-medium text-[#8a9af7] bg-[#4361ee]/20 px-2 py-1 rounded-full">
               BOUTIQUE
-            </span>
+            </span> */}
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <Link
@@ -51,14 +52,14 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            <Button
+            {/* <Button
               variant="ghost"
               className="text-white hover:text-[#8a9af7] hover:bg-white/5 transition-all duration-300"
             >
               <Link href="/dashboard">Access</Link>             
-            </Button>
+            </Button> */}
             <Button className="bg-gradient-to-r from-[#4361ee] to-[#8a9af7] hover:from-[#3a56d4] hover:to-[#7b8bf5] text-white rounded-full px-6 py-2 shadow-lg shadow-[#4361ee]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[#4361ee]/40">
-              Begin Journey
+              <Link href="/dashboard">Access</Link>             
             </Button>
           </div>
         </div>

@@ -156,14 +156,14 @@ const AutomationCard = ( { automation, pathname }: Props) => {
                           rounded-full from-[#3352CC] font-medium to-[#1C2D70]"
                 onClick={handleDelete}
               >
-                Yes
+                Yes, delete
               </Button>
               <Button
                 className="w-32 lg:px-10 py-3 bg-gradient-to-br hover:opacity-80 text-white
                           rounded-full from-[#818283] font-medium to-[#737478]"
                 onClick={() => setShowConfirm(false)}
               >
-                Cancel
+                No, keep
               </Button>
             </div>
           </div>
