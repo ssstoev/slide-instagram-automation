@@ -1,20 +1,11 @@
-## License
+## Description
 
-This project is licensed for educational use only. For commercial use, a license must be purchased. You can obtain the license here: [Code License](https://webprodigies.com/license).
+Slide is an Instagram message automation tool which allows a user to connect his account and send automatic replies based on keyword matches. It allows fixed messages as well as AI generated ones.
 
+![image](https://github.com/user-attachments/assets/7ae927b0-5271-4f56-b2f3-e60181165a1f)
 
-## Usage Guidelines
-Here are a few examples of how you can and cannot use the code:
+![image](https://github.com/user-attachments/assets/9f69692a-1452-4d69-abdb-423706e50a6d)
 
-- **To learn?** ✅
-- **To build a portfolio?** ✅
-- **To get a job?** ✅
-- **To run as a business?** ❌
-- **To run as a SaaS?** ❌
-- **Any form of income through the code?** ❌
-- **To resell?** ❌
-- **To create content?** ❌
-- **To claim as your own?** ❌
+![image](https://github.com/user-attachments/assets/3db94c01-533b-4b78-a8de-df6ce10711fa)
 
-These are just a few examples, and there may be more situations where the code usage is restricted you can read the agreement on the website.
-This code is provided strictly for learning purposes. If you wish to use our code for any commercial purposes, please purchase a license here: [Code License](https://webprodigies.com/license).
+![image](https://github.com/user-attachments/assets/c330cef8-d0bf-47ec-bd42-37fa12df8a6c)
