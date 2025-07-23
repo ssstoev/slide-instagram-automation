@@ -4,6 +4,7 @@ import { onCurrentUser } from "../user"
 import { findUser } from "../user/queries"
 import { addKeyword, addListener, addPost, addTrigger, 
         createAutomation, deleteAutomation, deleteKeywordQuery, findAutomation, 
+        getActiveAutomations, 
         getAutomations, updateAutomation } from "./queries"
 
 export const createAutomations = async (id?: string) => {
@@ -196,3 +197,18 @@ export const activateAutomation = async (id: string, state: boolean) => {
     return { status: 500, data: 'Oops.. Something went wrong' }
   }
 }
+
+//  fetch active automations
+export const fetchActiveAutomations = async () => {
+  const user = await onCurrentUser()
+
+  try {
+    const automations = await getActiveAutomations(user.id);
+    if (automations) return { status: 200, data: automations.automations }
+    
+    return { status: 404, data: [] }
+
+  } catch (error) {
+      return { status: 500, data: [] }
+  }
+};

@@ -42,7 +42,7 @@ export const getAutomations = async (clerkId: string) => {
         }
       }
     }
-})
+  })
 }
 
 export const findAutomation = async (id: string) => {
@@ -180,3 +180,25 @@ export const addPost = async (automationId: string,
       }
     })
   }
+
+export const getActiveAutomations = async (clerkId: string) => {
+  return await client.user.findUnique({
+    where: {
+      clerkId
+    },
+    select: {
+      automations: {
+        orderBy: {
+          createdAt: 'asc'
+        },
+        include: {
+          keywords: true,
+          listener: true
+        },
+        where: {
+          active: true
+        }
+      }
+    }
+  })
+}
