@@ -68,6 +68,7 @@ const AutomationCard = ( { automation, pathname }: Props) => {
       >
         <div className="flex flex-col flex-1 items-start">
           <h2 className="text-xl font-semibold">{automation.name}</h2>
+          {/* WIP: Fetch the description of the automation */}
           <p className="text-[#9B9CA0] text-sm font-light mb-2">
             This is from the comment
           </p>
@@ -103,14 +104,6 @@ const AutomationCard = ( { automation, pathname }: Props) => {
           )}
         </div>
         <div className="flex flex-col justify-between">
-          {/* <p className="capitalize text-sm font-light text-[#9B9CA0]">
-            {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
-            {automation.createdAt.getUTCDate() === 1
-              ? `${automation.createdAt.getUTCDate()}st`
-              : `${automation.createdAt.getUTCDate()}th`}{' '}
-            {automation.createdAt.getUTCFullYear()}
-            <TrashBinIcon />
-          </p> */}
           <div className="flex items-center justify-between w-full">
             <span className="capitalize text-sm font-light text-[#9B9CA0] mr-3">
               {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}

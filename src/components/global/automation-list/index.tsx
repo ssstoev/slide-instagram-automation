@@ -5,19 +5,18 @@ import { useQueryAutomations } from '@/hooks/user-queries'
 import CreateAutomation from '../create-automation'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 import AutomationCard from './automation-card'
+import { useAppSelector } from '@/redux/store'
 
 const AutomationList = () => {
   // fetch all automations from DB and put them in cache
   const { data } = useQueryAutomations()
-  console.log('AUTOMATIONS in DB: \n', data?.data)
+  // console.log('AUTOMATIONS in DB: \n', data?.data)
 
   // save the latest created automation to latestVariable
   const { data: createMutationData } = useMutationDataState(['create-automation'])
   const { data: deleteMutationData } = useMutationDataState(['delete-automation'])
 
-  console.log('CREATE MUTATION DATA: \n', createMutationData)
-  // const { latestVariable: deletedLatestVariable } = useMutationDataState(['delete-automation'])
-  // console.log('DELETED LATEST VARIABE: ', deletedLatestVariable)
+  // console.log('CREATE MUTATION DATA: \n', createMutationData)
   const { pathname } = usePaths()
 
   const optimisticUiData = useMemo(() => {
@@ -52,9 +51,27 @@ const AutomationList = () => {
     return data || { data: [] };
   }, [createMutationData, deleteMutationData, data]);
 
-  console.log('AUTOMATIONS in OPTIMISTIC UI: \n', optimisticUiData?.data)
+  // console.log('AUTOMATIONS in OPTIMISTIC UI: \n', optimisticUiData?.data)
   
-  if (data?.status !== 200 || data.data.length <= 0 && optimisticUiData.data.length <= 0) {
+  // import the state of searchTerm using useAppSelector
+  const searchTerm = useAppSelector(state => state.searchTerm.searchTerm);
+
+  // Filter automations based on search term
+  const filteredAutomations = useMemo(() => {
+    const allAutomations = optimisticUiData.data || [];
+    // Remove leading spaces from searchTerm
+    const trimmedSearchTerm = searchTerm.trimStart();
+    if (!trimmedSearchTerm) return allAutomations;
+    const lower = trimmedSearchTerm.toLowerCase();    
+    return allAutomations.filter(auto =>
+      (auto.name && auto.name.toLowerCase().includes(lower)) ||
+      (auto.keywords && auto.keywords.some(keyword => typeof keyword.word === 'string' && keyword.word.toLowerCase().includes(lower)))
+    );
+      // (auto.status && auto.status.toLowerCase().includes(lower))
+  }, [optimisticUiData.data, searchTerm]);
+
+  if (data?.status !== 200 || data.data.length <= 0 && filteredAutomations.length === 0) {
+    console.log('no automations found')
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
         <h3 className="text-lg text-gray-400">No Automations </h3>
@@ -63,9 +80,18 @@ const AutomationList = () => {
     )
   }
 
+  if (data?.status === 200 && data.data.length > 0 && filteredAutomations.length === 0) {
+    // Automations exist, but none match the search
+    return (
+      <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
+        <h3 className="text-lg text-gray-400">No Automations Found</h3>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-y-3">
-      {optimisticUiData.data.map((automation) => (
+      {filteredAutomations.map((automation) => (
         <AutomationCard
           key={automation.id}
           automation={automation}

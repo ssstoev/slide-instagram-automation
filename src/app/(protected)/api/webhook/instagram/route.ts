@@ -12,7 +12,7 @@ import { openai } from "@/lib/openai"
 import { client } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
-//this get method is used to validate the webhook with our endpoint(only done once at the start)
+//this get method is used to validate the webhook with our endpoint (only done once at the start)
 export async function GET(req: NextRequest) {
     const hub = req.nextUrl.searchParams.get("hub.challenge")
     return new NextResponse(hub)
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
                     true,
                 )
 
-                // check if automation is active
+                // check if automation is not active
                 if (!automation?.active){
                     console.log('automation is not active')
                     return NextResponse.json(
@@ -121,7 +121,6 @@ export async function POST(req: NextRequest) {
                                 messages: [
                                     {
                                         role: "assistant",
-                                        // content: 'Hello, how I assist you today?'
                                         content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
                                     },
                                 ],
