@@ -12,8 +12,6 @@ type Props = {
 const Layout = async ({ children, params }: Props) => {
 
   // Query Client - fetch user info and pass it into components
-  // WIP: query client fetch data and give user optimistic ui
-
   const query = new QueryClient()
 
   // create helper function which prefetches all data for different server actions

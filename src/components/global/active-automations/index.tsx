@@ -1,6 +1,6 @@
 import React from 'react'
 import { Check } from 'lucide-react'
-import { fetchActiveAutomations } from '@/actions/automations';
+// import { fetchActiveAutomations } from '@/actions/automations';
 import CreateAutomation from '../create-automation';
 import { useQueryAutomations } from '@/hooks/user-queries';
 import { getMonth } from '@/lib/utils';

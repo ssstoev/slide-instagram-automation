@@ -27,3 +27,5 @@ export const DASHBOARD_CARDS: Props[] = [
     description: 'The intention of the message will be automatically detected',
   },
 ]
+
+export const monthOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

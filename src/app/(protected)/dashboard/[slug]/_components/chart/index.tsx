@@ -4,7 +4,9 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/
 import React from 'react'
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, XAxis } from 'recharts'
 
-type Props = {}
+type Props = {
+  data: { month: string; desktop: string }[]
+}
 
 const chartData = [
   {month: 'Jan', desktop: '44'},
@@ -13,13 +15,15 @@ const chartData = [
   {month: 'Apr', desktop: '73'},
 ]
 
+console.log('chart data month desktop: ', chartData[0])
 const chartConfig = {
   desktop: {
     label: 'Desktop',
     color: 'hsl(var(--chart-1))'
   }
 }
-const Chart = (props: Props) => {
+
+const Chart = async (props: Props) => {
   return (
     <Card className='border-none p-0'>
       <CardContent className='p-0'>
@@ -27,7 +31,7 @@ const Chart = (props: Props) => {
           <ChartContainer config={chartConfig}>
             <AreaChart 
             accessibilityLayer
-            data={chartData}
+            data={props.data}
             margin={{
               left: 12,
               right: 12

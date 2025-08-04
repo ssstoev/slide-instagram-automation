@@ -1,6 +1,6 @@
 'use client'
 import AutomationList from '@/components/global/automation-list'
-import CreateAutomation from '@/components/global/create-automation'
+// import CreateAutomation from '@/components/global/create-automation'
 // import { Check } from 'lucide-react'
 import React from 'react'
 import { usePathname } from 'next/navigation'

@@ -199,16 +199,16 @@ export const activateAutomation = async (id: string, state: boolean) => {
 }
 
 //  fetch active automations
-export const fetchActiveAutomations = async () => {
-  const user = await onCurrentUser()
+// export const fetchActiveAutomations = async () => {
+//   const user = await onCurrentUser()
 
-  try {
-    const automations = await getActiveAutomations(user.id);
-    if (automations) return { status: 200, data: automations.automations }
+//   try {
+//     const automations = await getActiveAutomations(user.id);
+//     if (automations) return { status: 200, data: automations.automations }
     
-    return { status: 404, data: [] }
+//     return { status: 404, data: [] }
 
-  } catch (error) {
-      return { status: 500, data: [] }
-  }
-};
+//   } catch (error) {
+//       return { status: 500, data: [] }
+//   }
+// };
