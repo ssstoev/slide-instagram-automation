@@ -3,7 +3,7 @@ import { Check } from 'lucide-react'
 // import { fetchActiveAutomations } from '@/actions/automations';
 import CreateAutomation from '../create-automation';
 import { useQueryAutomations } from '@/hooks/user-queries';
-import { getMonth } from '@/lib/utils';
+import { getDaySuffix, getMonth } from '@/lib/utils';
 
 type Props = {}
 
@@ -35,9 +35,11 @@ const ActiveAutomations = (props: Props) => {
                 </h3>
                 <p className='text-text-secondary text-sm'>
                   {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
-                  {automation.createdAt.getUTCDate() === 1
+                  {automation.createdAt.getUTCDate()}
+                  {getDaySuffix(automation.createdAt.getUTCDate())}{' '}
+                  {/* {automation.createdAt.getUTCDate() === 1
                     ? `${automation.createdAt.getUTCDate()}st`
-                    : `${automation.createdAt.getUTCDate()}th`}{' '}
+                    : `${automation.createdAt.getUTCDate()}th`}{' '} */}
                   {automation.createdAt.getUTCFullYear()}
                 </p>
               </div>

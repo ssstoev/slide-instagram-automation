@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { cn, getMonth } from '@/lib/utils'
+import { cn, getDaySuffix, getMonth } from '@/lib/utils'
 import GradientButton from '../gradient-button'
 import { Button } from '@/components/ui/button'
 import { TrashBinIcon } from '@/icons/trash-bin'
@@ -107,9 +107,9 @@ const AutomationCard = ( { automation, pathname }: Props) => {
           <div className="flex items-center justify-between w-full">
             <span className="capitalize text-sm font-light text-[#9B9CA0] mr-3">
               {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
-              {automation.createdAt.getUTCDate() === 1
-                ? `${automation.createdAt.getUTCDate()}st`
-                : `${automation.createdAt.getUTCDate()}th`}{' '}
+              {/* {automation.createdAt.getUTCDate() === 1 ? `${automation.createdAt.getUTCDate()}st` */}
+              {automation.createdAt.getUTCDate()}
+              {getDaySuffix(automation.createdAt.getUTCDate())}{' '}
               {automation.createdAt.getUTCFullYear()}
             </span>
             <span

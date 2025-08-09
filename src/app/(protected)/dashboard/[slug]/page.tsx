@@ -29,7 +29,8 @@ const Page = async (props: Props) => {
     month,
     desktop: count.toString()
   }));
-
+  
+  // sort the array using the month ordering
   const sortedAggregatedArray = aggregatedArray.sort(
     (a, b) => monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month)
   );
